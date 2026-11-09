@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Muguku Poultry Farm · Farm Fresh Eggs & Chickens</title>
+  <!-- Font Awesome 6 (free) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- CSS reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      background: #fefcf5;
+      color: #2c2b28;
+      line-height: 1.5;
+    }
+
+    :root {
+      --primary: #f5a623;      /* warm egg yolk */
+      --primary-dark: #d18b1a;
+      --secondary: #4a6b3c;    /* farm green */
+      --light-bg: #f9f6ed;
+      --card-bg: #ffffff;
+      --border-light: #eae3d7;
+      --shadow-sm: 0 6px 16px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+      --shadow-hover: 0 16px 28px rgba(0,0,0,0.06), 0 6px 12px rgba(0,0,0,0.03);
+      --radius-card: 22px;
+      --radius-btn: 40px;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ----- header / nav ----- */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      background: var(--primary);
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2b2b2b;
+      font-size: 24px;
+      box-shadow: 0 6px 12px rgba(245, 166, 35, 0.2);
+    }
+
+    .logo-text {
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--secondary);
+    }
+
+    .logo-text span {
+      color: var(--primary-dark);
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-weight: 500;
+      color: #4e4b44;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-dark);
+    }
+
+    .cart-icon {
+      background: #ffffff;
+      padding: 10px 18px;
+      border-radius: var(--radius-btn);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      border: 1px solid var(--border-light);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .cart-icon i {
+      font-size: 1.2rem;
+      color: var(--secondary);
+    }
+
+    .cart-count {
+      background: var(--primary);
+      color: #1f1f1f;
+      border-radius: 40px;
+      padding: 2px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    /* ----- hero ----- */
+    .hero {
+      background: linear-gradient(145deg, #fff6e9 0%, #fefcf5 100%);
+      padding: 30px 0 40px;
+      border-radius: 0 0 60px 60px;
+      margin-bottom: 30px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .hero-text {
+      flex: 1 1 320px;
+    }
+
+    .hero-badge {
+      background: var(--primary);
+      color: #2b2b1a;
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #2b3a2b;
+    }
+
+    .hero-text h1 i {
+      color: var(--primary-dark);
+      font-size: 2.8rem;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #5a574e;
+      max-width: 500px;
+      margin-bottom: 30px;
+    }
+
+    .hero-highlight {
+      background: #fff;
+      padding: 18px 28px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .hero-highlight .item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .hero-highlight .item i {
+      color: var(--secondary);
+      font-size: 1.3rem;
+    }
+
+    .hero-image {
+      flex: 1 1 280px;
+      text-align: center;
+    }
+
+    .hero-image i {
+      font-size: 12rem;
+      color: #f5cd8c;
+      filter: drop-shadow(0 20px 20px rgba(0,0,0,0.05));
+      background: radial-gradient(circle at 30% 30%, #ffe9c7, #f7d59b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ----- product section ----- */
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+      color: #2f3e2a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-sub {
+      color: #6b6a63;
+      margin-bottom: 42px;
+      font-size: 1.1rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      margin: 40px 0 20px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-card);
+      padding: 26px 20px 22px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: #f5d9b0;
+    }
+
+    .product-icon {
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+    }
+
+    .product-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+      color: #293d29;
+    }
+
+    .product-desc {
+      color: #6b675e;
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--secondary);
+      letter-spacing: -0.5px;
+    }
+
+    .price small {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #8b877d;
+    }
+
+    .btn-add {
+      background: white;
+      border: 2px solid var(--primary);
+      color: var(--secondary);
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-btn);
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+    }
+
+    .btn-add i {
+      font-size: 1rem;
+    }
+
+    .btn-add:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #1f2a1a;
+      transform: scale(1.02);
+    }
+
+    /* ----- cart / checkout panel ----- */
+    .checkout-panel {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 32px;
+      margin: 50px 0 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+
+    .checkout-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .checkout-header h2 {
+      font-size: 1.9rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #2b3a2b;
+    }
+
+    .deposit-badge {
+      background: #e9f3e5;
+      color: #2c4a1e;
+      padding: 10px 24px;
+      border-radius: 60px;
+      font-weight: 700;
+      border: 1px solid #c7deb9;
+      font-size: 0.95rem;
+    }
+
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 30px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: #faf8f2;
+      border-radius: 18px;
+      border: 1px solid #ece6db;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cart-item-info {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cart-item-name {
+      font-weight: 600;
+      min-width: 140px;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: var(--secondary);
+      min-width: 80px;
+    }
+
+    .cart-item-qty {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qty-btn {
+      background: white;
+      border: 1px solid #d9d0c0;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .qty-number {
+      font-weight: 600;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .remove-item {
+      background: none;
+      border: none;
+      color: #b15e3c;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 4px 8px;
+      transition: 0.2s;
+    }
+
+    .remove-item:hover {
+      color: #9e3f1a;
+      transform: scale(1.1);
+    }
+
+    .empty-cart-message {
+      padding: 30px;
+      text-align: center;
+      background: #fdfbf7;
+      border-radius: 20px;
+      color: #8b877d;
+      font-size: 1.1rem;
+      border: 1px dashed #ddd6c8;
+    }
+
+    .cart-summary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+      border-top: 2px dashed #ddd6c8;
+      gap: 20px;
+    }
+
+    .total-box {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .total-label {
+      font-size: 0.95rem;
+      color: #7a766d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .total-amount {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #293d29;
+      line-height: 1.2;
+    }
+
+    .deposit-amount {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: #fff1db;
+      padding: 6px 16px;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    .checkout-btn {
+      background: var(--secondary);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 18px 44px;
+      border-radius: 60px;
+      font-size: 1.15rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 18px rgba(74, 107, 60, 0.18);
+    }
+
+    .checkout-btn:hover {
+      background: #3b5630;
+      transform: scale(1.01);
+      box-shadow: 0 12px 22px rgba(74, 107, 60, 0.25);
+    }
+
+    .checkout-btn:disabled {
+      background: #b9b9ac;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ----- toast notification ----- */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2f3e2a;
+      color: white;
+      padding: 16px 30px;
+      border-radius: 60px;
+      font-weight: 500;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    /* ----- footer ----- */
+    .footer {
+      background: #1e2a1c;
+      color: #dddbd0;
+      padding: 40px 0 26px;
+      margin-top: 70px;
+      border-radius: 50px 50px 0 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer i {
+      color: var(--primary);
+    }
+
+    /* ----- responsive tweaks ----- */
+    @media (max-width: 780px) {
+      .hero-text h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero-image i {
+        font-size: 8rem;
+      }
+
+      .hero-highlight {
+        padding: 14px 18px;
+        gap: 18px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .cart-icon {
+        align-self: center;
+      }
+
+      .checkout-panel {
+        padding: 24px 18px;
+      }
+
+      .checkout-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 20px;
+      }
+
+      .cart-summary {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .toast {
+        white-space: normal;
+        text-align: center;
+        max-width: 90%;
+        padding: 14px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .product-grid {
+        gap: 18px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .cart-item-info {
+        gap: 10px;
+      }
+
+      .price {
+        font-size: 1.5rem;
+      }
+
+      .total-amount {
+        font-size: 1.8rem;
+      }
+
+      .hero-highlight .item {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-egg"></i></div>
+        <div class="logo-text">Muguku<span> Poultry</span></div>
+      </div>
+      <div class="nav-links">
+        <a href="#">Shop</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-basket"></i>
+        <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="hero-badge"><i class="fas fa-leaf"></i> Pasture‑raised · Farm fresh</span>
+        <h1>Healthy chicks, <br>premium eggs & <i class="fas fa-feather-alt"></i> happy hens</h1>
+        <p>Order directly from Muguku Poultry Farm. Pay only 30% deposit to secure your delivery.</p>
+        <div class="hero-highlight">
+          <div class="item"><i class="fas fa-egg"></i> Day old 105/=</div>
+          <div class="item"><i class="fas fa-dove"></i> POL 700/=</div>
+          <div class="item"><i class="fas fa-egg"></i> L 380/=</div>
+          <div class="item"><i class="fas fa-egg"></i> M 350/=</div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <i class="fas fa-egg"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRODUCT SECTION ========== -->
+  <div class="container">
+    <h2 class="section-title"><i class="fas fa-tag" style="color: var(--primary-dark);"></i> Our products</h2>
+    <p class="section-sub">Choose your quantity — 30% deposit required on checkout.</p>
+
+    <div class="product-grid" id="productGrid">
+      <!-- Products will be injected by JS -->
+    </div>
+
+    <!-- ========== CART / CHECKOUT PANEL ========== -->
+    <div class="checkout-panel" id="checkoutPanel">
+      <div class="checkout-header">
+        <h2><i class="fas fa-clipboard-list"></i> Your order</h2>
+        <div class="deposit-badge"><i class="fas fa-hand-holding-usd"></i> 30% deposit to confirm</div>
+      </div>
+
+      <div class="cart-items" id="cartItemsContainer">
+        <!-- cart items injected via JS -->
+        <div class="empty-cart-message">
+          <i class="fas fa-shopping-basket" style="font-size: 2rem; margin-bottom: 8px; display: block;"></i>
+          Your cart is empty. Add some farm goodies!
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="total-box">
+          <span class="total-label">Total amount</span>
+          <span class="total-amount" id="totalAmount">0/=</span>
+          <span class="deposit-amount" id="depositAmount">Deposit (30%): 0/=</span>
+        </div>
+        <button class="checkout-btn" id="checkoutBtn" disabled>
+          <i class="fas fa-lock"></i> Pay 30% deposit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="logo-text" style="color: #eae3d7;">Muguku Poultry Farm</div>
+      <div><i class="fas fa-phone-alt"></i> +254 712 345 678</div>
+      <div><i class="fas fa-map-pin"></i> Kiambu, Kenya</div>
+      <div>© 2025 · Farm fresh goodness</div>
+    </div>
+  </footer>
+
+  <!-- toast notification -->
+  <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMessage">Added to cart</span></div>
+
+  <script>
+    (function() {
+      // ---------- product data ----------
+      const PRODUCTS = [
+        { id: 'doc', name: 'Day Old Chicks', price: 105, icon: 'fa-dove', description: 'Vaccinated, healthy chicks' },
+        { id: 'pol', name: 'Point of Lay', price: 700, icon: 'fa-feather-alt', description: 'Ready to start laying' },
+        { id: 'eggL', name: 'Eggs – Large', price: 380, icon: 'fa-egg', description: 'Grade A, large size (tray)' },
+        { id: 'eggM', name: 'Eggs – Medium', price: 350, icon: 'fa-egg', description: 'Farm fresh medium eggs (tray)' }
+      ];
+
+      // ---------- state ----------
+      let cart = [];   // array of { id, name, price, quantity }
+
+      // ---------- DOM elements ----------
+      const productGrid = document.getElementById('productGrid');
+      const cartItemsContainer = document.getElementById('cartItemsContainer');
+      const totalAmountSpan = document.getElementById('totalAmount');
+      const depositAmountSpan = document.getElementById('depositAmount');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+      const cartCountSpan = document.getElementById('cartCount');
+      const toastEl = document.getElementById('toast');
+      const toastMessageSpan = document.getElementById('toastMessage');
+
+      // ---------- render products ----------
+      function renderProducts() {
+        let html = '';
+        PRODUCTS.forEach(prod => {
+          html += `
+            <div class="product-card">
+              <div class="product-icon"><i class="fas ${prod.icon}"></i></div>
+              <h3>${prod.name}</h3>
+              <div class="product-desc">${prod.description}</div>
+              <div class="price-row">
+                <div class="price">${prod.price}/= <small>each</small></div>
+                <button class="btn-add" data-id="${prod.id}" data-name="${prod.name}" data-price="${prod.price}">
+                  <i class="fas fa-plus-circle"></i> Add
+                </button>
+              </div>
+            </div>
+          `;
+        });
+        productGrid.innerHTML = html;
+
+        // attach add-to-cart listeners
+        document.querySelectorAll('.btn-add').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const price = parseInt(this.dataset.price);
+            addToCart(id, name, price);
+          });
+        });
+      }
+
+      // ---------- helper: show toast ----------
+      function showToast(message) {
+        toastMessageSpan.textContent = message;
+        toastEl.classList.add('show');
+        setTimeout(() => {
+          toastEl.classList.remove('show');
+        }, 2200);
+      }
+
+      // ---------- add to cart ----------
+      function addToCart(id, name, price) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          ex
